@@ -64,6 +64,11 @@ export default class Character {
     if (!this.isAlive) {
       throw new Error("Dead characters cannot attack");
     }
+    if (this === other) {
+      throw new Error(
+        "Invalid attack target: Characters cannot attack themselves"
+      );
+    }
 
     other.health -= this.damage;
   }
