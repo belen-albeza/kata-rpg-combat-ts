@@ -2,10 +2,12 @@ interface CharacterOptions {
   health?: number;
   damage?: number;
   healing?: number;
+  level?: number;
 }
 
 export default class Character {
   #health: number;
+  readonly level: number;
   #stats: { damage: number; healing: number };
 
   constructor(options: CharacterOptions = {}) {
@@ -13,11 +15,13 @@ export default class Character {
       health: 1000,
       damage: 0,
       healing: 0,
+      level: 1,
     };
 
-    const { health, damage, healing } = { ...defaults, ...options };
+    const { health, damage, healing, level } = { ...defaults, ...options };
 
     this.#health = health;
+    this.level = level;
     this.#stats = {
       damage,
       healing,
@@ -25,7 +29,7 @@ export default class Character {
   }
 
   toString() {
-    return `HP: ${this.health}`;
+    return `Lvl. ${this.level} (HP: ${this.health})`;
   }
 
   get health() {
