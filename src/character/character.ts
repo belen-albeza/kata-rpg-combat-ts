@@ -89,6 +89,11 @@ export default class Character {
       );
     }
 
+    const isWithinRange = this.#distanceTo(other) <= this.range;
+    if (!isWithinRange) {
+      throw new Error("Invalid attack target: Out of range");
+    }
+
     const damage = this.#damageTo(other);
     other.health -= damage;
   }
@@ -98,5 +103,12 @@ export default class Character {
     const coeff = diff >= 5 ? 1.5 : diff <= -5 ? 0.5 : 1.0;
 
     return this.damage * coeff;
+  }
+
+  #distanceTo(other: Character) {
+    const dx = this.position.x - other.position.x;
+    const dy = this.position.y - other.position.y;
+
+    return Math.sqrt(dx * dx + dy * dy);
   }
 }
