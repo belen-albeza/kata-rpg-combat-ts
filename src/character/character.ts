@@ -22,4 +22,8 @@ export default class Character {
   set health(value: number) {
     this.#health = Math.max(0, Math.min(value, 1000));
   }
+
+  get isAlive() {
+    return this.#health > 0;
+  }
 }
