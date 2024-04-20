@@ -10,7 +10,7 @@ This kata is structured in iterations (steps). New requirements are added in eac
 
 ## Iterations
 
-### Iteration 1: Characters and basic actions
+### 🚀 Iteration 1: Characters and basic actions
 
 - **Characters** have **Health**, starting at `1000` health points.
 
@@ -25,7 +25,7 @@ This kata is structured in iterations (steps). New requirements are added in eac
 - Characters can be dead or alive. A character with `0` health is considered dead.
   - Dead characters cannot perform actions.
 
-### Iteration 2: Levels and attack targets
+### 🚀 Iteration 2: Levels and attack targets
 
 - A Character cannot target themselves for attacking.
 
@@ -33,7 +33,7 @@ This kata is structured in iterations (steps). New requirements are added in eac
   - If the target is 5+ levels _above_ the attacker, the attack will have a **debuff** of `-50%` to the damage.
   - If the target is 5+ levels _below_ the attacker, the attack will have a **buff** of `+50%` to the damage.
 
-### Iteration 3: Attack range
+### 🚀 Iteration 3: Attack range
 
 - Characters have an attack range.
 
@@ -41,3 +41,15 @@ This kata is structured in iterations (steps). New requirements are added in eac
   - If they are a **Ranged figther**, their range would be `20` meters.
 
 - When dealing damage in an attack, the target must be within range.
+
+### 🤔 Reflection #1
+
+_This is not an iteration, but rather a moment for you to take a short break, reflect, and do any refactors if you deem them necessary_.
+
+- Are you keeping up with the requirements?
+
+- Do you feel good about your design? Is it scalable and easily adapted to the requirements that have been added?
+
+- Is your code tested? If so, are you confident in your tests?
+
+- Take a look at the next iteration: do you want to make some changes in your design before you tackle that?
