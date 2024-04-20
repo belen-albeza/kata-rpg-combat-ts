@@ -24,6 +24,10 @@ export default class Character {
     };
   }
 
+  toString() {
+    return `HP: ${this.health}`;
+  }
+
   get health() {
     return this.#health;
   }
