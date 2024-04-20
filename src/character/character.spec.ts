@@ -55,6 +55,14 @@ describe("Character attack", () => {
       c.attack(other);
     }).toThrow(/dead characters cannot attack/i);
   });
+
+  it("Throws exception is the attacker targets themselves", () => {
+    const c = new Character({ damage: 50, health: 1000 });
+
+    expect(() => {
+      c.attack(c);
+    }).toThrow(/invalid attack target/i);
+  });
 });
 
 describe("Character healing", () => {
