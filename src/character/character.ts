@@ -3,11 +3,15 @@ interface CharacterOptions {
   damage?: number;
   healing?: number;
   level?: number;
+  attackType?: AttackType;
 }
+
+export type AttackType = "melee" | "ranged";
 
 export default class Character {
   #health: number;
   readonly level: number;
+  readonly attackType: AttackType;
   #stats: { damage: number; healing: number };
 
   constructor(options: CharacterOptions = {}) {
@@ -16,12 +20,17 @@ export default class Character {
       damage: 0,
       healing: 0,
       level: 1,
+      attackType: "melee" as AttackType,
     };
 
-    const { health, damage, healing, level } = { ...defaults, ...options };
+    const { health, damage, healing, level, attackType } = {
+      ...defaults,
+      ...options,
+    };
 
     this.#health = health;
     this.level = level;
+    this.attackType = attackType;
     this.#stats = {
       damage,
       healing,
@@ -29,7 +38,7 @@ export default class Character {
   }
 
   toString() {
-    return `Lvl. ${this.level} (HP: ${this.health})`;
+    return `Lvl. ${this.level} ${this.attackType} fighter (HP: ${this.health})`;
   }
 
   get health() {
