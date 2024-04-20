@@ -1,5 +1,5 @@
 import { describe, it, expect } from "bun:test";
-import Character from "./character";
+import Character, { Vec2d } from ".";
 
 describe("Character", () => {
   it("Gets created with 1000 health points by default", () => {
@@ -14,14 +14,14 @@ describe("Character", () => {
       healing: 10,
       level: 5,
       attackType: "ranged",
-      position: { x: 1, y: 2 },
+      position: new Vec2d(1, 2),
     });
     expect(c.health).toBe(123);
     expect(c.damage).toBe(50);
     expect(c.healing).toBe(10);
     expect(c.level).toBe(5);
     expect(c.attackType).toBe("ranged");
-    expect(c.position).toEqual({ x: 1, y: 2 });
+    expect(c.position).toEqual(new Vec2d(1, 2));
   });
 
   describe("Health", () => {
@@ -110,9 +110,9 @@ describe("Character attack", () => {
     const c = new Character({
       damage: 100,
       attackType: "ranged",
-      position: { x: 0, y: 0 },
+      position: new Vec2d(0, 0),
     });
-    const other = new Character({ health: 1000, position: { x: 21, y: 0 } });
+    const other = new Character({ health: 1000, position: new Vec2d(21, 0) });
 
     expect(() => {
       c.attack(other);
