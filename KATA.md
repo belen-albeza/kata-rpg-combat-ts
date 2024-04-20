@@ -32,3 +32,12 @@ This kata is structured in iterations (steps). New requirements are added in eac
 - Characters have a **Level**, starting at 1.
   - If the target is 5+ levels _above_ the attacker, the attack will have a **debuff** of `-50%` to the damage.
   - If the target is 5+ levels _below_ the attacker, the attack will have a **buff** of `+50%` to the damage.
+
+### Iteration 3: Attack range
+
+- Characters have an attack range.
+
+  - If they are a **Melee figther**, their range would be `2` meters.
+  - If they are a **Ranged figther**, their range would be `20` meters.
+
+- When dealing damage in an attack, the target must be within range.
