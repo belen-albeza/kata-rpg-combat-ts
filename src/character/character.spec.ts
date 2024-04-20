@@ -8,8 +8,20 @@ describe("Character", () => {
   });
 
   it("Gets created with the specified options", () => {
-    const c = new Character({ health: 123 });
+    const c = new Character({
+      health: 123,
+      damage: 50,
+      healing: 10,
+      level: 5,
+      attackType: "ranged",
+      position: { x: 1, y: 2 },
+    });
     expect(c.health).toBe(123);
+    expect(c.damage).toBe(50);
+    expect(c.healing).toBe(10);
+    expect(c.level).toBe(5);
+    expect(c.attackType).toBe("ranged");
+    expect(c.position).toEqual({ x: 1, y: 2 });
   });
 
   describe("Health", () => {
@@ -33,6 +45,18 @@ describe("Character", () => {
 
       expect(alive.isAlive).toBeTrue();
       expect(dead.isAlive).toBeFalse();
+    });
+  });
+
+  describe("Range", () => {
+    it("Returns 2 if they are a melee fighter", () => {
+      const c = new Character({ attackType: "melee" });
+      expect(c.range).toBe(2);
+    });
+
+    it("Returns 20 if they are a ranged fighter", () => {
+      const c = new Character({ attackType: "ranged" });
+      expect(c.range).toBe(20);
     });
   });
 });

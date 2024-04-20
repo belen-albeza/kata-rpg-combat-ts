@@ -1,17 +1,20 @@
-interface CharacterOptions {
+export interface CharacterOptions {
   health?: number;
   damage?: number;
   healing?: number;
   level?: number;
   attackType?: AttackType;
+  position?: Vec2d;
 }
 
 export type AttackType = "melee" | "ranged";
+export type Vec2d = { x: number; y: number };
 
 export default class Character {
   #health: number;
   readonly level: number;
   readonly attackType: AttackType;
+  position: Vec2d;
   #stats: { damage: number; healing: number };
 
   constructor(options: CharacterOptions = {}) {
@@ -21,9 +24,10 @@ export default class Character {
       healing: 0,
       level: 1,
       attackType: "melee" as AttackType,
+      position: { x: 0, y: 0 } as Vec2d,
     };
 
-    const { health, damage, healing, level, attackType } = {
+    const { health, damage, healing, level, attackType, position } = {
       ...defaults,
       ...options,
     };
@@ -31,6 +35,7 @@ export default class Character {
     this.#health = health;
     this.level = level;
     this.attackType = attackType;
+    this.position = position;
     this.#stats = {
       damage,
       healing,
@@ -59,6 +64,10 @@ export default class Character {
 
   get healing() {
     return this.#stats.healing;
+  }
+
+  get range() {
+    return this.attackType === "melee" ? 2 : 20;
   }
 
   heal() {
