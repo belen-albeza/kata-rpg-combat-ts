@@ -46,6 +46,15 @@ describe("Character attack", () => {
 
     expect(other.health).toBe(950);
   });
+
+  it("Throws exception if the attacker is dead", () => {
+    const c = new Character({ damage: 50, health: 0 });
+    const other = new Character({ health: 1000 });
+
+    expect(() => {
+      c.attack(other);
+    }).toThrow(/dead characters cannot attack/i);
+  });
 });
 
 describe("Character healing", () => {
@@ -55,5 +64,13 @@ describe("Character healing", () => {
     c.heal();
 
     expect(c.health).toBe(150);
+  });
+
+  it("Throws exception if the healer is dead", () => {
+    const c = new Character({ healing: 50, health: 0 });
+
+    expect(() => {
+      c.heal();
+    }).toThrow(/dead characters cannot heal/i);
   });
 });
