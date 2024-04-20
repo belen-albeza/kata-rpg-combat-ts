@@ -1,3 +1,5 @@
+import Vec2d from "../utils/vec2d";
+
 export interface CharacterOptions {
   health?: number;
   damage?: number;
@@ -8,7 +10,6 @@ export interface CharacterOptions {
 }
 
 export type AttackType = "melee" | "ranged";
-export type Vec2d = { x: number; y: number };
 
 export default class Character {
   #health: number;
@@ -24,7 +25,7 @@ export default class Character {
       healing: 0,
       level: 1,
       attackType: "melee" as AttackType,
-      position: { x: 0, y: 0 } as Vec2d,
+      position: new Vec2d(),
     };
 
     const { health, damage, healing, level, attackType, position } = {
@@ -89,7 +90,8 @@ export default class Character {
       );
     }
 
-    const isWithinRange = this.#distanceTo(other) <= this.range;
+    const distance = this.position.distanceTo(other.position);
+    const isWithinRange = distance <= this.range;
     if (!isWithinRange) {
       throw new Error("Invalid attack target: Out of range");
     }
@@ -103,12 +105,5 @@ export default class Character {
     const coeff = diff >= 5 ? 1.5 : diff <= -5 ? 0.5 : 1.0;
 
     return this.damage * coeff;
-  }
-
-  #distanceTo(other: Character) {
-    const dx = this.position.x - other.position.x;
-    const dy = this.position.y - other.position.y;
-
-    return Math.sqrt(dx * dx + dy * dy);
   }
 }
