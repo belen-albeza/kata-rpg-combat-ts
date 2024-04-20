@@ -36,3 +36,24 @@ describe("Character", () => {
     });
   });
 });
+
+describe("Character attack", () => {
+  it("Deals damage to another character", () => {
+    const c = new Character({ damage: 50 });
+    const other = new Character({ health: 1000 });
+
+    c.attack(other);
+
+    expect(other.health).toBe(950);
+  });
+});
+
+describe("Character healing", () => {
+  it("Heals themselves", () => {
+    const c = new Character({ health: 100, healing: 50 });
+
+    c.heal();
+
+    expect(c.health).toBe(150);
+  });
+});
