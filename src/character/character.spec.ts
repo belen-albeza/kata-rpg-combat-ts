@@ -25,4 +25,14 @@ describe("Character", () => {
       expect(c.health).toBe(0);
     });
   });
+
+  describe("Death", () => {
+    it("Returns whether they are dead or alive", () => {
+      const alive = new Character({ health: 1 });
+      const dead = new Character({ health: 0 });
+
+      expect(alive.isAlive).toBeTrue();
+      expect(dead.isAlive).toBeFalse();
+    });
+  });
 });
