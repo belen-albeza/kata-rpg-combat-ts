@@ -64,12 +64,21 @@ export default class Character {
     if (!this.isAlive) {
       throw new Error("Dead characters cannot attack");
     }
+
     if (this === other) {
       throw new Error(
         "Invalid attack target: Characters cannot attack themselves"
       );
     }
 
-    other.health -= this.damage;
+    const damage = this.#damageTo(other);
+    other.health -= damage;
+  }
+
+  #damageTo(other: Character) {
+    const diff = this.level - other.level;
+    const coeff = diff >= 5 ? 1.5 : diff <= -5 ? 0.5 : 1.0;
+
+    return this.damage * coeff;
   }
 }
