@@ -105,6 +105,19 @@ describe("Character attack", () => {
 
     expect(other.health).toBe(950);
   });
+
+  it("Throws exception if the target is out of range", () => {
+    const c = new Character({
+      damage: 100,
+      attackType: "ranged",
+      position: { x: 0, y: 0 },
+    });
+    const other = new Character({ health: 1000, position: { x: 21, y: 0 } });
+
+    expect(() => {
+      c.attack(other);
+    }).toThrow(/out of range/i);
+  });
 });
 
 describe("Character healing", () => {
