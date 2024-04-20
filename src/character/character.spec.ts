@@ -63,6 +63,24 @@ describe("Character attack", () => {
       c.attack(c);
     }).toThrow(/invalid attack target/i);
   });
+
+  it("Gets a +50% buff if target is 5+ levels below", () => {
+    const c = new Character({ damage: 100, level: 6 });
+    const other = new Character({ health: 1000, level: 1 });
+
+    c.attack(other);
+
+    expect(other.health).toBe(850);
+  });
+
+  it("Gets a -50% debuff if target is 5+ levels above", () => {
+    const c = new Character({ damage: 100, level: 1 });
+    const other = new Character({ health: 1000, level: 6 });
+
+    c.attack(other);
+
+    expect(other.health).toBe(950);
+  });
 });
 
 describe("Character healing", () => {
