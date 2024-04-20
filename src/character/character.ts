@@ -45,10 +45,18 @@ export default class Character {
   }
 
   heal() {
+    if (!this.isAlive) {
+      throw new Error("Dead characters cannot heal");
+    }
+
     this.health += this.healing;
   }
 
   attack(other: Character) {
+    if (!this.isAlive) {
+      throw new Error("Dead characters cannot attack");
+    }
+
     other.health -= this.damage;
   }
 }
