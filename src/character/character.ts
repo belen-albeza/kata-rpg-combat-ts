@@ -89,32 +89,4 @@ export default class Character {
 
     this.health += this.healing;
   }
-
-  attack(other: Character) {
-    if (!this.isAlive) {
-      throw new Error("Dead characters cannot attack");
-    }
-
-    if (this === other) {
-      throw new Error(
-        "Invalid attack target: Characters cannot attack themselves"
-      );
-    }
-
-    const distance = this.position.distanceTo(other.position);
-    const isWithinRange = distance <= this.range;
-    if (!isWithinRange) {
-      throw new Error("Invalid attack target: Out of range");
-    }
-
-    const damage = this.#damageTo(other);
-    other.health -= damage;
-  }
-
-  #damageTo(other: Character) {
-    const diff = this.level - other.level;
-    const coeff = diff >= 5 ? 1.5 : diff <= -5 ? 0.5 : 1.0;
-
-    return this.damage * coeff;
-  }
 }

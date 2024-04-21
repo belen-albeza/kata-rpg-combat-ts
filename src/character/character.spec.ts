@@ -61,65 +61,6 @@ describe("Character", () => {
   });
 });
 
-describe("Character attack", () => {
-  it("Deals damage to another character", () => {
-    const c = new Character({ damage: 50 });
-    const other = new Character({ health: 1000 });
-
-    c.attack(other);
-
-    expect(other.health).toBe(950);
-  });
-
-  it("Throws exception if the attacker is dead", () => {
-    const c = new Character({ damage: 50, health: 0 });
-    const other = new Character({ health: 1000 });
-
-    expect(() => {
-      c.attack(other);
-    }).toThrow(/dead characters cannot attack/i);
-  });
-
-  it("Throws exception is the attacker targets themselves", () => {
-    const c = new Character({ damage: 50, health: 1000 });
-
-    expect(() => {
-      c.attack(c);
-    }).toThrow(/invalid attack target/i);
-  });
-
-  it("Gets a +50% buff if target is 5+ levels below", () => {
-    const c = new Character({ damage: 100, level: 6 });
-    const other = new Character({ health: 1000, level: 1 });
-
-    c.attack(other);
-
-    expect(other.health).toBe(850);
-  });
-
-  it("Gets a -50% debuff if target is 5+ levels above", () => {
-    const c = new Character({ damage: 100, level: 1 });
-    const other = new Character({ health: 1000, level: 6 });
-
-    c.attack(other);
-
-    expect(other.health).toBe(950);
-  });
-
-  it("Throws exception if the target is out of range", () => {
-    const c = new Character({
-      damage: 100,
-      attackType: "ranged",
-      position: new Vec2d(0, 0),
-    });
-    const other = new Character({ health: 1000, position: new Vec2d(21, 0) });
-
-    expect(() => {
-      c.attack(other);
-    }).toThrow(/out of range/i);
-  });
-});
-
 describe("Character healing", () => {
   it("Heals themselves", () => {
     const c = new Character({ health: 100, healing: 50 });
