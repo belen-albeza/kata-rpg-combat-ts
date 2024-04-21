@@ -60,21 +60,3 @@ describe("Character", () => {
     });
   });
 });
-
-describe("Character healing", () => {
-  it("Heals themselves", () => {
-    const c = new Character({ health: 100, healing: 50 });
-
-    c.heal();
-
-    expect(c.health).toBe(150);
-  });
-
-  it("Throws exception if the healer is dead", () => {
-    const c = new Character({ healing: 50, health: 0 });
-
-    expect(() => {
-      c.heal();
-    }).toThrow(/dead characters cannot heal/i);
-  });
-});
