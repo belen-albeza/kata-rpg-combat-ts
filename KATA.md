@@ -53,3 +53,13 @@ _This is not an iteration, but rather a moment for you to take a short break, re
 - Is your code tested? If so, are you confident in your tests?
 
 - Take a look at the next iteration: do you want to make some changes in your design before you tackle that?
+
+### 🚀 Iteration 4: Factions
+
+- We now have **Factions**.
+
+- A Character may join or leave one or more factions.
+
+- Characters that belong to the same faction are considered **allies**.
+  - Characters can heal themselves, _and_ allies.
+  - Characters cannot attack allies.
