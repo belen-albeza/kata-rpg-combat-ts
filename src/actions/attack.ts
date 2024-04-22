@@ -1,11 +1,10 @@
-import Character from "../character";
-export { default as Character } from "../character";
+import { Attacker, AttackTarget } from ".";
 
 export default class AttackAction {
-  readonly source: Character;
-  readonly target: Character;
+  readonly source: Attacker;
+  readonly target: AttackTarget;
 
-  constructor(source: Character, target: Character) {
+  constructor(source: Attacker, target: AttackTarget) {
     this.source = source;
     this.target = target;
   }
