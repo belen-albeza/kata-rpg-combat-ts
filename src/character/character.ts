@@ -1,4 +1,5 @@
 import Vec2d from "../utils/vec2d";
+import { Healer } from "../actions";
 
 export interface CharacterOptions {
   health?: number;
@@ -11,7 +12,7 @@ export interface CharacterOptions {
 
 export type AttackType = "melee" | "ranged";
 
-export default class Character {
+export default class Character implements Healer {
   #health: number;
   position: Vec2d;
   #stats: {
