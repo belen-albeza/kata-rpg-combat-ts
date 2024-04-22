@@ -1,9 +1,9 @@
-import Character from "../character";
+import { Healer } from ".";
 
 export default class HealAction {
-  readonly source: Character;
+  readonly source: Healer;
 
-  constructor(source: Character) {
+  constructor(source: Healer) {
     this.source = source;
   }
 
