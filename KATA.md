@@ -63,3 +63,13 @@ _This is not an iteration, but rather a moment for you to take a short break, re
 - Characters that belong to the same faction are considered **allies**.
   - Characters can heal themselves, _and_ allies.
   - Characters cannot attack allies.
+
+### 🚀 Iteration 5: Non-character targets (props)
+
+- Characters can damage **Props** (a tree, a house, etc.). Any entity with **Health** that is not a Character, is a prop.
+
+- Props cannot heal or be healed.
+
+- Props cannot deal damage.
+
+- Props do not belong to any faction, they are neutral.
