@@ -1,12 +1,18 @@
-import { Attacker, AttackTarget } from ".";
+import { Attacker, AttackTarget, AllianceInformer } from ".";
 
 export default class AttackAction {
   readonly source: Attacker;
   readonly target: AttackTarget;
+  readonly #alliances?: AllianceInformer;
 
-  constructor(source: Attacker, target: AttackTarget) {
+  constructor(
+    source: Attacker,
+    target: AttackTarget,
+    alliances?: AllianceInformer
+  ) {
     this.source = source;
     this.target = target;
+    this.#alliances = alliances;
   }
 
   run() {
@@ -18,6 +24,10 @@ export default class AttackAction {
       throw new Error(
         "Invalid attack target: Characters cannot attack themselves"
       );
+    }
+
+    if (this.#alliances?.areAllies(this.source, this.target)) {
+      throw new Error("Invalid attack target: cannot attack allies");
     }
 
     const distance = this.source.position.distanceTo(this.target.position);

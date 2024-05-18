@@ -26,3 +26,7 @@ export interface Attacker extends HasHealth, HasLevel, HasPosition {
 }
 
 export interface AttackTarget extends HasHealth, HasLevel, HasPosition {}
+
+export interface AllianceInformer {
+  areAllies: (a: any, b: any) => boolean;
+}
