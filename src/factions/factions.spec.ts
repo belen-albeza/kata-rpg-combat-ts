@@ -20,6 +20,15 @@ describe("FactionManager", () => {
     expect(fm.members("horde")).toEqual(new Set(["Thrall"]));
   });
 
+  it("Disallow neutral entities to join factions", () => {
+    const fm = new FactionManager();
+    const neutral = { isNeutral: true };
+
+    expect(() => {
+      fm.join("horde", neutral);
+    }).toThrow(/invalid member/i);
+  });
+
   describe("Alliances", () => {
     it("Returns false when two members don't have a faction in common", () => {
       const fm = new FactionManager();
