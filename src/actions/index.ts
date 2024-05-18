@@ -1,7 +1,7 @@
 import Vec2d from "../utils/vec2d";
 
-export { default as HealAction } from "./heal";
 export { default as AttackAction } from "./attack";
+export { HealAction, HealAnotherAction } from "./heal";
 
 interface HasHealth {
   health: number;
@@ -19,6 +19,8 @@ interface HasPosition {
 export interface Healer extends HasHealth {
   healing: number;
 }
+
+export interface HealTarget extends HasHealth {}
 
 export interface Attacker extends HasHealth, HasLevel, HasPosition {
   damage: number;
