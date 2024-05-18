@@ -1,4 +1,4 @@
-import AttackAction from "./actions/attack";
+import { AttackAction, HealAction } from "./actions";
 import Character from "./character";
 
 const orc = new Character({ damage: 100, healing: 10 });
@@ -15,7 +15,7 @@ console.log("Garrosh attacks Malfurion!");
 console.log(`\tGarrosh: ${orc}`);
 console.log(`\tMalfurion: ${elf}`);
 
-elf.heal();
+new HealAction(elf).run();
 
 console.log("Malfurion heals himself!");
 console.log(`\tGarrosh: ${orc}`);

@@ -81,12 +81,4 @@ export default class Character {
   get range() {
     return this.attackType === "melee" ? 2 : 20;
   }
-
-  heal() {
-    if (!this.isAlive) {
-      throw new Error("Dead characters cannot heal");
-    }
-
-    this.health += this.healing;
-  }
 }
