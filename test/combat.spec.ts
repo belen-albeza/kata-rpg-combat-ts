@@ -3,6 +3,7 @@ import { describe, it, expect } from "bun:test";
 import Character from "../src/character";
 import { AttackAction, HealAction, HealAnotherAction } from "../src/actions";
 import FactionManager from "../src/factions";
+import Prop from "../src/prop";
 
 describe("Character combat", () => {
   it("Allows characters to attack one another", () => {
@@ -58,5 +59,25 @@ describe("Factions", () => {
     expect(() => {
       attack.run();
     }).toThrow(/invalid attack target/i);
+  });
+});
+
+describe("Props", () => {
+  it("Cannot join factions", () => {
+    const house = new Prop();
+    const factions = new FactionManager();
+
+    expect(() => {
+      factions.join("foo", house);
+    }).toThrow(/invalid member/i);
+  });
+
+  it("Can be damaged by characters", () => {
+    const house = new Prop({ health: 1000 });
+    const attacker = new Character({ damage: 100 });
+
+    new AttackAction(attacker, house).run();
+
+    expect(house.health).toBe(900);
   });
 });
