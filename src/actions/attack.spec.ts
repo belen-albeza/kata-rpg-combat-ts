@@ -1,4 +1,4 @@
-import { describe, it, expect } from "bun:test";
+import { describe, it, expect, mock } from "bun:test";
 import Vec2d from "../utils/vec2d";
 
 import AttackAction from "./attack";
@@ -79,5 +79,29 @@ describe("Character attack", () => {
     expect(() => {
       attack.run();
     }).toThrow(/out of range/i);
+  });
+
+  describe("Alliances", () => {
+    it("Deals damage to a non-ally", () => {
+      const informerOfNoAlliance = { areAllies: () => false };
+      const source = anyAttacker({ damage: 50 });
+      const target = anyTarget({ health: 1000 });
+      const attack = new AttackAction(source, target, informerOfNoAlliance);
+
+      attack.run();
+
+      expect(target.health).toBe(950);
+    });
+
+    it("Throws exception if the target is an ally", () => {
+      const informerOfAlliance = { areAllies: () => true };
+      const source = anyAttacker();
+      const target = anyTarget();
+      const attack = new AttackAction(source, target, informerOfAlliance);
+
+      expect(() => {
+        attack.run();
+      }).toThrow(/invalid attack target/i);
+    });
   });
 });
