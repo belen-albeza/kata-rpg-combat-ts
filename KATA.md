@@ -73,3 +73,13 @@ _This is not an iteration, but rather a moment for you to take a short break, re
 - Props cannot deal damage.
 
 - Props do not belong to any faction, they are neutral.
+
+### 🤔 Reflection #2 (final retrospective)
+
+_This is not an iteration, but rather a moment for you to take a short break, reflect, and do any refactors if you deem them necessary_.
+
+- What problems did you encounter?
+
+- What have you learned? Any new technique or pattern?
+
+- Share your design with others, get feedback and debate on the different ways this kata could be solved.
