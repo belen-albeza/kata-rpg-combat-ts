@@ -1,6 +1,8 @@
 # kata-rpg-combat-ts
 
-Step-by-step implementation of the RPG Combat kata, in TypeScript. See [KATA.md](./KATA.md) for the kata instructions, if you want to implement by it yourself.
+Step-by-step implementation of the RPG Combat kata in TypeScript, following an Object-Oriented approach and applying SOLID principles.
+
+See [KATA.md](./KATA.md) for the kata instructions, if you want to implement as well.
 
 ## Requirements
 
